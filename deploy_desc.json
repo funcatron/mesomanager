@@ -1,0 +1,37 @@
+{
+    "id": "/funcatron",
+    "apps": [
+        {
+            "id": "/funcatron/rabbit",
+            "cpus": 0.5,
+            "mem": 256.0,
+            "container": {
+                "type": "DOCKER",
+                "docker": {
+                    "image": "byteflair/rabbitmq-stomp",
+                    "network": "BRIDGE",
+                    "portMappings": [
+                        { "containerPort": 61613, "name": "stomp", "hostPort": 0},
+                        { "containerPort": 5672, "name": "rabbit", "hostPort": 0},
+                        { "containerPort": 15672, "name": "rabbitadm", "hostPort": 0}
+                    ]
+                }
+            }
+        },
+        {
+            "id": "/funcatron/frontend",
+            "cpus": 0.5,
+            "mem": 128.0,
+            "container": {
+                "type": "DOCKER",
+                "docker": {
+                    "image": "funcatron/frontend:latest",
+                    "forcePullImage": true,
+                    "network": "BRIDGE",
+                    "portMappings": [
+                        { "containerPort": 80, "name": "http", "hostPort": 0}
+                    ]
+                }
+            }
+        }]
+}

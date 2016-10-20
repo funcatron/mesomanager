@@ -1,0 +1,8 @@
+# Get IP address via dig:
+
+[vagrant@m1 ~]$ dig _woof-woofer1-dogs._tcp.marathon.mesos SRV | grep "IN A" | grep -v "^\;" | grep -o "[0-9]*\.[0-9]*\.[[0-9]*\.[0-9]*$"
+
+
+# get port via dig
+
+ dig _woof-woofer1-dogs._tcp.marathon.mesos SRV | grep "IN SRV" | grep -v "^\;" | grep -o "[0-9]* *[^ ]*$" | grep -o "^[0-9]*"
